@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SHOP_DATA from './shop.data'
 import PreviewCollection from '../../components/preview-collection/preview-collection.component'
-import Header from '../../components/header/header.component'
+//import Header from '../../components/header/header.component'
 import './shop.style.scss'
 
 class ShopPage extends Component
