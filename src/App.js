@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {Route, Switch, Link} from 'react-router-dom'
 import ShopPage from './pages/shop-page/shop.component'
 import Homepage from './pages/homepage/homepage.component'
 import Header from './components/header/header.component';
 import SigninandSignupPage from './pages/sign-in-and-sign-up-page/sign-in-and-sign-up.component';
+import { auth } from './firebase/firebase.utilis'
 
 import './App.css';
 
@@ -30,19 +31,42 @@ const DetailPage = (props) =>
   </div>
   )
 } 
-function App() {
-  return (
-    <div className="App">
-    <Header></Header>
-      <Switch>
-        <Route exact path="/" component={Homepage}></Route>
-        <Route exact path="/shop" component={ShopPage}></Route>
-        <Route exact path="/shop/hats" component={HatsPage}></Route>
-        <Route exact path ="/shop/hats/:hatID" component={DetailPage}></Route>
-        <Route exact path ="/signin" component={SigninandSignupPage}></Route>   
-      </Switch>
-    </div>
-  );
+class App extends Component {
+  constructor()
+  {
+    super();
+    this.state = {
+      currentUser : null
+    }
+  }
+
+  unsubcribeFormAuth = null ;
+  componentDidMount()
+  {
+    this.unsubcribeFormAuth= auth.onAuthStateChanged(user => {
+      this.setState({currentUser : user});
+      console.log(user);
+    })
+  }
+  componentWillUnmount()
+  {
+    this.unsubcribeFormAuth();
+  }
+  render(){
+    return (
+      <div className="App">
+      <Header currentUser={this.state.currentUser}></Header>
+        <Switch>
+          <Route exact path="/" component={Homepage}></Route>
+          <Route exact path="/shop" component={ShopPage}></Route>
+          <Route exact path="/shop/hats" component={HatsPage}></Route>
+          <Route exact path ="/shop/hats/:hatID" component={DetailPage}></Route>
+          <Route exact path ="/signin" component={SigninandSignupPage}></Route>   
+        </Switch>
+      </div>
+    );
+  }
+  
 }
 
 export default App;
