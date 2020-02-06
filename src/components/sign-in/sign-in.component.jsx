@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import FormInput from '../form-input/form-input.coponent'
+import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component'
 import {SignInWithGoogle} from '../../firebase/firebase.utilis'
 

@@ -4,7 +4,7 @@ import ShopPage from './pages/shop-page/shop.component'
 import Homepage from './pages/homepage/homepage.component'
 import Header from './components/header/header.component';
 import SigninandSignupPage from './pages/sign-in-and-sign-up-page/sign-in-and-sign-up.component';
-import { auth } from './firebase/firebase.utilis'
+import { auth,createUserProfileDocument } from './firebase/firebase.utilis'
 
 import './App.css';
 
@@ -36,16 +36,33 @@ class App extends Component {
   {
     super();
     this.state = {
-      currentUser : null
+      currentUser : null 
     }
   }
 
   unsubcribeFormAuth = null ;
+
   componentDidMount()
   {
-    this.unsubcribeFormAuth= auth.onAuthStateChanged(user => {
-      this.setState({currentUser : user});
-      console.log(user);
+    this.unsubcribeFormAuth= auth.onAuthStateChanged(async userAuth => {
+      if(userAuth)
+      {
+        const userRef =  await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser : {
+              id : snapShot.id,
+              ...snapShot.data()
+            }
+          },() => {
+            console.log(this.state);
+          })
+        })
+      }
+      else{
+        this.setState({currentUser : userAuth})
+      }
     })
   }
   componentWillUnmount()
