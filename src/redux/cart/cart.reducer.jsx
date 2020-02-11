@@ -1,6 +1,6 @@
 import CartActionType from './cart.type'
 import {addItemtoCart, removeItemfromCart} from './cart.util'
-import CartActionTypes from './cart.type'
+
 
 
 const INITIAL_STATE = {
