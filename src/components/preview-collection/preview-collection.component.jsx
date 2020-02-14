@@ -1,11 +1,17 @@
 import React from 'react'
+import {withRouter} from 'react-router-dom'
 import CollectionItem from '../collection-item/collection-item.component'
+import {connect} from 'react-redux'
+import {createStructuredSelector} from 'reselect'
+import {selectDirectorySections} from '../../redux/directory/directory.selector'
 import './preview-collection.style.scss'
 
-const PreviewCollection = ({title,items}) => {
+const PreviewCollection = ({title,items,match,history}) => {
     return(
         <div className="collection-preview">
-            <h1 className="title">{title.toUpperCase()}</h1>
+            <h1 className="title"
+            onClick={ () => history.push(`${match.url}/${title.toLowerCase()}`)}
+            >{title.toUpperCase()}</h1>
             <div className="preview">
                 {
                     items
@@ -18,4 +24,7 @@ const PreviewCollection = ({title,items}) => {
         </div>
     )
 }
-export default PreviewCollection
+const mapStatetoProps = createStructuredSelector({
+    sections : selectDirectorySections
+})
+export default withRouter(connect(mapStatetoProps)(PreviewCollection))
