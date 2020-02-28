@@ -5,6 +5,7 @@ import Homepage from './pages/homepage/homepage.component'
 import Header from './components/header/header.component';
 import SigninandSignupPage from './pages/sign-in-and-sign-up-page/sign-in-and-sign-up.component';
 import CheckoutPage from './pages/checkout/checkout.component'
+import ContactPage from './pages/contact/contact.component'
 import { auth,createUserProfileDocument } from './firebase/firebase.utilis'
 import {connect} from 'react-redux'
 import { createStructuredSelector} from 'reselect'
@@ -76,6 +77,7 @@ class App extends Component {
               : <SigninandSignupPage></SigninandSignupPage>} >
           </Route>   
           <Route path='/checkout' component={CheckoutPage}></Route>
+          <Route path='/contact' component={ContactPage}></Route>
         </Switch>
       </div>
     );

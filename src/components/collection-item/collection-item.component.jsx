@@ -5,7 +5,7 @@ import {addItem} from '../../redux/cart/cart.action'
 
 import './collection-item.style.scss'
 
-const CollectionItem = ({item,addItem}) => {
+const CollectionItem = ({item,dispatch}) => {
     return(
         <div className="collection-item">
             <div className="image"
@@ -17,14 +17,12 @@ const CollectionItem = ({item,addItem}) => {
                 <div className="price">{item.price}</div>
             </div>
             <CustomButton 
-            onClick={() => addItem(item)}
+            onClick={() => dispatch(addItem(item))}
             inverted >
             ADD TO CART
             </CustomButton>
         </div>
     )
 }
-const mapDispatchtoProps = (dispatch) => ({
- addItem : item => dispatch(addItem(item))
-})
-export default connect(null,mapDispatchtoProps)(CollectionItem);
+
+export default connect()(CollectionItem);

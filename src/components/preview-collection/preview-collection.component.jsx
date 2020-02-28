@@ -2,8 +2,8 @@ import React from 'react'
 import {withRouter} from 'react-router-dom'
 import CollectionItem from '../collection-item/collection-item.component'
 import {connect} from 'react-redux'
-import {createStructuredSelector} from 'reselect'
-import {selectDirectorySections} from '../../redux/directory/directory.selector'
+//import {createStructuredSelector} from 'reselect'
+//import {selectDirectorySections} from '../../redux/directory/directory.selector'
 import './preview-collection.style.scss'
 
 const PreviewCollection = ({title,items,match,history}) => {
@@ -24,7 +24,7 @@ const PreviewCollection = ({title,items,match,history}) => {
         </div>
     )
 }
-const mapStatetoProps = createStructuredSelector({
-    sections : selectDirectorySections
-})
-export default withRouter(connect(mapStatetoProps)(PreviewCollection))
+// const mapStatetoProps = createStructuredSelector({
+//     sections : selectDirectorySections
+// })
+export default withRouter(connect()(PreviewCollection))
