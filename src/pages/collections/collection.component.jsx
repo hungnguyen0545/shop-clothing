@@ -2,7 +2,7 @@ import React from 'react'
 import CollectionItem from '../../components/collection-item/collection-item.component'
 import {connect} from 'react-redux'
 import {selectCollection} from '../../redux/collection/collection.selector'
-
+import SearchBar from '../../components/search/search.component'
 import './collection.style.scss'
 
 const CollectionPage = ({collection}) => 
@@ -10,7 +10,9 @@ const CollectionPage = ({collection}) =>
     const {title, items} = collection;
     return(
         <div className="collection-page">
+            
             <h2 className='title'> {title} </h2>
+            <SearchBar></SearchBar>
             <div className='items'>
             {
                 items.map(item => (
