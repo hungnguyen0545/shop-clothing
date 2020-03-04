@@ -7,17 +7,18 @@ import {connect} from 'react-redux'
 import './preview-collection.style.scss'
 
 const PreviewCollection = ({title,items,match,history}) => {
+    var linkURL = `${match.url}/${title.toLowerCase()}`
     return(
         <div className="collection-preview">
             <h1 className="title"
-            onClick={ () => history.push(`${match.url}/${title.toLowerCase()}`)}
+            onClick={ () => history.push(linkURL)}
             >{title.toUpperCase()}</h1>
             <div className="preview">
                 {
                     items
                     .filter((item,index) => index <4)
                     .map((item) => (
-                        <CollectionItem key={item.id} item={item}></CollectionItem>
+                        <CollectionItem key={item.id} item={item} linkURL ={linkURL}></CollectionItem>
                     ))
                 }
             </div>

@@ -78,6 +78,7 @@ class App extends Component {
           </Route>   
           <Route path='/checkout' component={CheckoutPage}></Route>
           <Route path='/contact' component={ContactPage}></Route>
+          <Route ></Route>
         </Switch>
       </div>
     );

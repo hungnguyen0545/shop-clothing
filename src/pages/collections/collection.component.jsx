@@ -1,12 +1,13 @@
 import React from 'react'
 import CollectionItem from '../../components/collection-item/collection-item.component'
 import {connect} from 'react-redux'
-import {selectCollection} from '../../redux/collection/collection.selector'
+import {selectCollectionforCollectionPage} from '../../redux/collection/collection.selector'
 import SearchBar from '../../components/search/search.component'
 import './collection.style.scss'
 
-const CollectionPage = ({collection}) => 
+const CollectionPage = ({collection,match}) => 
 {
+    var linkURL = match.url;
     const {title, items} = collection;
     return(
         <div className="collection-page">
@@ -16,7 +17,7 @@ const CollectionPage = ({collection}) =>
             <div className='items'>
             {
                 items.map(item => (
-                    <CollectionItem key={item.id} item={item}></CollectionItem>
+                    <CollectionItem key={item.id} item={item} linkURL ={linkURL}></CollectionItem>
                 ))
             }
             </div>
@@ -25,6 +26,6 @@ const CollectionPage = ({collection}) =>
 }
 
 const mapStatetoProps = (state, ownProps) => ({
-    collection : selectCollection(ownProps.match.params.collectionId)(state)
+    collection : selectCollectionforCollectionPage(ownProps.match.params.collectionId)(state)
 })
 export default connect(mapStatetoProps)(CollectionPage)

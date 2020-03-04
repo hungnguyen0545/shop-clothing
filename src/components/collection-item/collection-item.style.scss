@@ -5,13 +5,13 @@
     flex-direction: column;
     align-items : center;
     position: relative;
-
     .image{
         width : 100%;
         height : 95%;
         background-position: cover;
         background-size : cover;
         margin-bottom : 5px;
+
     }
     .custom-button{
         width: 80px;
@@ -20,6 +20,23 @@
         top: 255px;
         display: none;
     }
+    .see-detail{
+        width: 170px;
+        height : 50px;
+        border: 1px solid rgba(0,0,0,0.7);
+        border-radius: 30px;
+        text-align: center  ;
+        background-color: black;
+        color: white;
+        opacity: 0;
+        position: absolute;
+        top : 150px;
+        font-size: 15px;
+        transform: translateY(-20px);
+        transition: transform 0.3s ease-in-out, opacity 0.2s ease-out;
+        cursor: pointer;
+        
+    }
     &:hover{
         .image{
             opacity: 0.8;
@@ -27,6 +44,11 @@
         .custom-button{
             display: flex;
             opacity: 0.85;
+        }
+        .see-detail{
+            
+            transform : translateY(-10px);
+            opacity: 0.8;
         }
     }
     .collection-footer{

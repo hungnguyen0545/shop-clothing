@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 
 import './collections-overview.style.scss'
 
-const CollectionsOverview = ({collections}) => {
+const CollectionsOverview = ({collections,props}) => {
     return(
         <div className='collections-overview'>
             <h1> SHOP COLLECTIONS </h1>

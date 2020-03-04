@@ -40,11 +40,8 @@ class Signin extends Component
         const {email,password} = this.state;
         return(
             <div className="sign-in">
-                <div className="title">
-                    <h2>I already have an account</h2>
-                    <span>Sign in with your email and password</span>
-                </div>
-                
+                <h2 className="title">I already have an account</h2>
+                <span>Sign in with your email and password</span>              
                 <form onSubmit={this.handleSubmit}>
                     <FormInput 
                     type="email" name="email" 

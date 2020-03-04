@@ -7,8 +7,16 @@ export const selectCollections = createSelector(
     shop => shop.collections
 ) 
 
-export const selectCollection = (collectionUrlParam) => 
+export const selectCollectionforCollectionPage = (getUrlParamCollectionId) => 
     createSelector(
         [selectCollections],
-        collections => collections[collectionUrlParam]
+        collections => collections[getUrlParamCollectionId]
         )
+
+export const selectItemforDetailItem = (getUrlParamCollectionId,getUrlParamItemId) => 
+    createSelector(
+        [selectCollections],
+        collection => collection[getUrlParamCollectionId].items.find(item => 
+            item.id == getUrlParamItemId
+        )
+    )
